@@ -10,7 +10,6 @@ public class CreateBookTest {
 
     @Test
     public void testCreateBook() {
-
         String book = "{\n" +
                 "  \"title\": \"The Adventures of Tom Sawyer\",\n" +
                 "  \"description\": \"The story about Tom Sawyer.\",\n" +
@@ -33,6 +32,7 @@ public class CreateBookTest {
                 body("description", Matchers.equalTo("The story about Tom Sawyer.")).
                 body("author", Matchers.equalTo("Mark Twain")).
                 body("price", Matchers.equalTo(350)).
-                body("count", Matchers.equalTo(10));
+                body("count", Matchers.equalTo(10)).
+                log().all();
     }
 }
