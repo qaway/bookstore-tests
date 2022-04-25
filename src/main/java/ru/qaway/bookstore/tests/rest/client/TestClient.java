@@ -1,12 +1,11 @@
 package ru.qaway.bookstore.tests.rest.client;
 
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import lombok.AllArgsConstructor;
 import ru.qaway.bookstore.tests.props.TestConfig;
-import ru.qaway.bookstore.tests.rest.model.Book;
+import ru.qaway.bookstore.tests.rest.model.request.Book;
 
 import static io.restassured.RestAssured.given;
 

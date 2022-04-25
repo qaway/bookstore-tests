@@ -1,4 +1,4 @@
-package ru.qaway.bookstore.tests.rest.model;
+package ru.qaway.bookstore.tests.rest.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

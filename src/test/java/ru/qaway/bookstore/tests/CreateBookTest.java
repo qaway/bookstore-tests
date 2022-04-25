@@ -4,7 +4,7 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 import ru.qaway.bookstore.tests.rest.client.TestClient;
 import ru.qaway.bookstore.tests.rest.enums.Category;
-import ru.qaway.bookstore.tests.rest.model.Book;
+import ru.qaway.bookstore.tests.rest.model.request.Book;
 
 public class CreateBookTest {
 
