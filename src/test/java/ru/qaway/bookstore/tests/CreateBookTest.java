@@ -3,9 +3,6 @@ package ru.qaway.bookstore.tests;
 import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
-import ru.qaway.bookstore.tests.props.TestConfig;
-import ru.qaway.bookstore.tests.rest.enums.Category;
-import ru.qaway.bookstore.tests.rest.model.Book;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,12 +10,17 @@ public class CreateBookTest {
 
     @Test
     public void testCreateBook() {
-        Book book = new Book("The Adventures of Tom Sawyer",
-                "The story about Tom Sawyer.",
-                "Mark Twain", 350, 10, Category.Adventures);
+        String book = "{\n" +
+                "  \"title\": \"The Adventures of Tom Sawyer\",\n" +
+                "  \"description\": \"The story about Tom Sawyer.\",\n" +
+                "  \"author\": \"Mark Twain\",\n" +
+                "  \"price\": 350,\n" +
+                "  \"count\": 10,\n" +
+                "  \"category\": \"Adventures\"\n" +
+                "}";
 
-        given().baseUri(TestConfig.Uri.value).
-                basePath(TestConfig.Path.value).
+        given().baseUri("http://localhost:8080").
+                basePath("/rest-api/").
                 contentType(ContentType.JSON).
                 body(book).
                 log().all().
