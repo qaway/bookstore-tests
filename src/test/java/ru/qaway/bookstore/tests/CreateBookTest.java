@@ -3,6 +3,7 @@ package ru.qaway.bookstore.tests;
 import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
+import ru.qaway.bookstore.tests.props.TestConfig;
 import ru.qaway.bookstore.tests.rest.enums.Category;
 import ru.qaway.bookstore.tests.rest.model.Book;
 
@@ -16,8 +17,8 @@ public class CreateBookTest {
                 "The story about Tom Sawyer.",
                 "Mark Twain", 350, 10, Category.Adventures);
 
-        given().baseUri("http://localhost:8080").
-                basePath("/rest-api/").
+        given().baseUri(TestConfig.Uri.value).
+                basePath(TestConfig.Path.value).
                 contentType(ContentType.JSON).
                 body(book).
                 log().all().
