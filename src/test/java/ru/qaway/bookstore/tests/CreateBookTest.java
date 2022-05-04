@@ -1,5 +1,6 @@
 package ru.qaway.bookstore.tests;
 
+import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 import ru.qaway.bookstore.tests.rest.client.TestClient;
 import ru.qaway.bookstore.tests.rest.enums.Category;

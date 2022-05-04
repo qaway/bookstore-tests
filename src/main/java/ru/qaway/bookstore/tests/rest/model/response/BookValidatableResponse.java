@@ -1,7 +1,6 @@
 package ru.qaway.bookstore.tests.rest.model.response;
 
 import io.restassured.response.Response;
-import lombok.SneakyThrows;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
@@ -11,7 +10,6 @@ public class BookValidatableResponse {
     private BookResponse model;
     private Response response;
 
-    @SneakyThrows
     public BookValidatableResponse(Response response) {
         this.response = response;
         model = response.as(BookResponse.class);
