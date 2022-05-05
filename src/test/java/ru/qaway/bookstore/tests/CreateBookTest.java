@@ -17,10 +17,17 @@ public class CreateBookTest {
 
         TestClient client = new TestClient();
 
-        client.create(book).
+        BookValidatableResponse response = client.create(book).
                 checkStatusCode(201).
                 checkIdNotNull().
                 checkLastUpdated().
                 checkBook(book);
+
+        client.read(response.getId()).
+                checkStatusCode(200).
+                checkId(response.getId()).
+                checkLastUpdated().
+                checkBook(book);
+
     }
 }

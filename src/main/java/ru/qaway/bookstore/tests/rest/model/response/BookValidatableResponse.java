@@ -38,4 +38,14 @@ public class BookValidatableResponse {
 
         return this;
     }
+
+    public BookValidatableResponse checkId(Integer id) {
+        response.then().body("id", Matchers.equalTo(id));
+
+        return this;
+    }
+
+    public Integer getId() {
+        return response.jsonPath().getInt("id");
+    }
 }

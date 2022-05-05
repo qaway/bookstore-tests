@@ -42,4 +42,13 @@ public class TestClient {
 
         return new BookValidatableResponse(response);
     }
+
+    public BookValidatableResponse read(Integer id) {
+        Response response = getRequestSpec().when().
+                get("/books/{id}", id);
+
+        response.then().log().all();
+
+        return new BookValidatableResponse(response);
+    }
 }
