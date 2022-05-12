@@ -1,4 +1,4 @@
-package ru.qaway.bookstore.tests;
+package ru.qaway.bookstore.tests.create;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hamcrest.Matchers;
