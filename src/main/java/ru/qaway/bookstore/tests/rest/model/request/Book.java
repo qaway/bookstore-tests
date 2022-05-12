@@ -1,13 +1,12 @@
 package ru.qaway.bookstore.tests.rest.model.request;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.testng.Assert;
 import ru.qaway.bookstore.tests.rest.enums.Category;
 
-@Setter
-@Getter
-@EqualsAndHashCode
-@ToString
+@Accessors(chain = true)
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
@@ -26,5 +25,11 @@ public class Book {
         this.price = book.price;
         this.count = book.count;
         this.category = book.category;
+    }
+
+    public static Book defaultOf() {
+        return new Book("The Adventures of Tom Sawyer",
+                "The story about Tom Sawyer.",
+                "Mark Twain", 350, 10, Category.Adventures);
     }
 }
