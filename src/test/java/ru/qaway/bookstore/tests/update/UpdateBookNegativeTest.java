@@ -22,5 +22,11 @@ public class UpdateBookNegativeTest extends BookStoreTestBase {
         testClient.update(id, book).
                 checkStatusCode(400).
                 checkErrorResponse(BookResponse.updateError400(id));
+
+        testClient.read(id).
+                checkStatusCode(200).
+                checkId(id).
+                checkLastUpdated().
+                checkBook(Book.defaultOf());
     }
 }
