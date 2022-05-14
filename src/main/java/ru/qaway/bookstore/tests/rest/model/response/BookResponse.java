@@ -29,4 +29,10 @@ public class BookResponse extends Book {
                 setError("Bad Request").
                 setPath("/rest-api/books");
     }
+
+    public static BookResponse updateError400(Integer id) {
+        return new BookResponse().setStatus(400).
+                setError("Bad Request").
+                setPath(String.format("/rest-api/books/%s", id));
+    }
 }
