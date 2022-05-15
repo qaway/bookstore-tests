@@ -1,6 +1,9 @@
 package ru.qaway.bookstore.tests.rest.client;
 
+import io.restassured.RestAssured;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
+import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
@@ -19,6 +22,7 @@ public class TestClient {
 
     public TestClient() {
         this(TestConfig.Uri.value, TestConfig.Path.value);
+        RestAssured.defaultParser = Parser.JSON;
     }
 
     private RequestSpecification getRequestSpec() {
@@ -55,6 +59,15 @@ public class TestClient {
     public BookValidatableResponse update(Integer id, Book book) {
         Response response = getRequestSpec(book).when().
                 put("/books/{id}", id);
+
+        response.then().log().all();
+
+        return new BookValidatableResponse(response);
+    }
+
+    public BookValidatableResponse delete(Integer id) {
+        Response response = getRequestSpec().when().
+                delete("/books/{id}", id);
 
         response.then().log().all();
 
