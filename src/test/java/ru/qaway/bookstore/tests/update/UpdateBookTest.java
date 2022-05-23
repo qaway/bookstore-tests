@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.qaway.bookstore.tests.BookData;
 import ru.qaway.bookstore.tests.BookStoreTestBase;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
-import ru.qaway.bookstore.tests.rest.model.response.BookValidatableResponse;
 
 public class UpdateBookTest extends BookStoreTestBase {
 

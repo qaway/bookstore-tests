@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import ru.qaway.bookstore.tests.BookData;
 import ru.qaway.bookstore.tests.BookStoreTestBase;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
-import ru.qaway.bookstore.tests.rest.model.response.BookResponse;
+import ru.qaway.bookstore.tests.rest.model.response.ErrorResponse;
 
 public class CreateBookNegativeTest extends BookStoreTestBase {
 
@@ -12,6 +12,6 @@ public class CreateBookNegativeTest extends BookStoreTestBase {
     public void testCreate(Book book) {
         testClient.create(book).
                 checkStatusCode(400).
-                checkErrorResponse(BookResponse.createError400());
+                checkErrorResponse(ErrorResponse.createError400());
     }
 }

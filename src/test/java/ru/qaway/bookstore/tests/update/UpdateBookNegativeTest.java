@@ -6,6 +6,7 @@ import ru.qaway.bookstore.tests.BookData;
 import ru.qaway.bookstore.tests.BookStoreTestBase;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
 import ru.qaway.bookstore.tests.rest.model.response.BookResponse;
+import ru.qaway.bookstore.tests.rest.model.response.ErrorResponse;
 
 public class UpdateBookNegativeTest extends BookStoreTestBase {
 
@@ -21,7 +22,7 @@ public class UpdateBookNegativeTest extends BookStoreTestBase {
     public void testUpdateBook(Book book) {
         testClient.update(id, book).
                 checkStatusCode(400).
-                checkErrorResponse(BookResponse.updateError400(id));
+                checkErrorResponse(ErrorResponse.updateError400(id));
 
         testClient.read(id).
                 checkStatusCode(200).
