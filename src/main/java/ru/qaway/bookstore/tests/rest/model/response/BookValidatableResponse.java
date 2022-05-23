@@ -1,26 +1,21 @@
 package ru.qaway.bookstore.tests.rest.model.response;
 
 import io.restassured.response.Response;
+import lombok.Getter;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
 
-public class BookValidatableResponse {
+@Getter
+public class BookValidatableResponse extends CommonValidatableResponse<BookValidatableResponse> {
 
-    private BookResponse model;
-    private Response response;
+    BookResponse model;
 
     public BookValidatableResponse(Response response) {
-        this.response = response;
+        super(response);
         if (response.asString().length() > 0) {
             model = response.as(BookResponse.class);
         }
-    }
-
-    public BookValidatableResponse checkStatusCode(int statusCode) {
-        response.then().statusCode(statusCode);
-
-        return this;
     }
 
     public BookValidatableResponse checkIdNotNull() {
@@ -36,20 +31,13 @@ public class BookValidatableResponse {
     }
 
     public BookValidatableResponse checkBook(Book expected) {
-        Assert.assertEquals(new Book(model), expected);
+        Assert.assertEquals(new Book(model.getBook()), expected);
 
         return this;
     }
 
     public BookValidatableResponse checkId(Integer id) {
         response.then().body("id", Matchers.equalTo(id));
-
-        return this;
-    }
-
-    public BookValidatableResponse checkErrorResponse(BookResponse expected) {
-        response.then().body("timestamp", Matchers.notNullValue());
-        Assert.assertEquals(model, expected);
 
         return this;
     }
