@@ -9,7 +9,7 @@ import ru.qaway.bookstore.tests.rest.model.request.Book;
 @Getter
 public class BookValidatableResponse extends CommonValidatableResponse<BookValidatableResponse> {
 
-    BookResponse model;
+    private BookResponse model;
 
     public BookValidatableResponse(Response response) {
         super(response);
