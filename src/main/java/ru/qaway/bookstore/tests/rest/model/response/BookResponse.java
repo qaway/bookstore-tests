@@ -1,9 +1,10 @@
 package ru.qaway.bookstore.tests.rest.model.response;
 
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.*;
 import lombok.experimental.Accessors;
-import ru.qaway.bookstore.tests.rest.model.request.BookExtended;
+import ru.qaway.bookstore.tests.rest.model.request.Book;
+
+import java.time.OffsetDateTime;
 
 @Accessors(chain = true)
 @Setter
@@ -12,8 +13,29 @@ import ru.qaway.bookstore.tests.rest.model.request.BookExtended;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookResponse extends ErrorResponse {
+public class BookResponse extends Book {
 
-    @JsonUnwrapped
-    private BookExtended book;
+    private Integer id;
+    private OffsetDateTime lastUpdated;
+
+    @EqualsAndHashCode.Exclude
+    private OffsetDateTime timestamp;
+    private Integer status;
+    private String error;
+    private String path;
+
+    private static BookResponse error400() {
+        return new BookResponse().setStatus(400).
+                setError("Bad Request");
+    }
+
+    public static BookResponse createError400() {
+        return error400().
+                setPath("/rest-api/books");
+    }
+
+    public static BookResponse updateError400(Integer id) {
+        return error400().
+                setPath(String.format("/rest-api/books/%s", id));
+    }
 }

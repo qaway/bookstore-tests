@@ -8,9 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import lombok.AllArgsConstructor;
 import ru.qaway.bookstore.tests.props.TestConfig;
 import ru.qaway.bookstore.tests.rest.model.request.Book;
-import ru.qaway.bookstore.tests.rest.model.request.Search;
 import ru.qaway.bookstore.tests.rest.model.response.BookValidatableResponse;
-import ru.qaway.bookstore.tests.rest.model.response.BooksValidatableResponse;
 
 import java.util.Map;
 
@@ -40,15 +38,6 @@ public class TestClient {
                 body(body);
     }
 
-    private RequestSpecification getRequestSpec(Map queryParams) {
-        if (queryParams != null) {
-            return getRequestSpec().
-                    queryParams(queryParams);
-        }
-
-        return getRequestSpec();
-    }
-
     public BookValidatableResponse create(Book book) {
         Response response = getRequestSpec(book).when().
                 post("/books");
@@ -67,15 +56,6 @@ public class TestClient {
         return new BookValidatableResponse(response);
     }
 
-    public BooksValidatableResponse read(Search queryParams) {
-        Response response = getRequestSpec(queryParams.get()).when().
-                get("/books");
-
-        response.then().log().all();
-
-        return new BooksValidatableResponse(response);
-    }
-
     public BookValidatableResponse update(Integer id, Book book) {
         Response response = getRequestSpec(book).when().
                 put("/books/{id}", id);
@@ -92,12 +72,5 @@ public class TestClient {
         response.then().log().all();
 
         return new BookValidatableResponse(response);
-    }
-
-    public void delete() {
-        Response response = getRequestSpec().when().
-                delete("/books");
-
-        response.then().log().all();
     }
 }
