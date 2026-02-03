@@ -2,7 +2,6 @@ package ru.qaway.bookstore.tests.rest.model.request;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.testng.Assert;
 import ru.qaway.bookstore.tests.rest.enums.Category;
 
 @Accessors(chain = true)
